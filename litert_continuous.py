@@ -4,6 +4,7 @@ printing if the picture is of a cat or a dog."""
 import cv2
 from ai_edge_litert.interpreter import Interpreter, SignatureRunner
 import sys
+import numpy as np
 
 
 def get_litert_runner(model_path: str) -> SignatureRunner:
@@ -26,8 +27,23 @@ def get_litert_runner(model_path: str) -> SignatureRunner:
 
 
 # TODO: Function to resize picture and then convert picture to numpy for model ingest
+def resize(frame, size: tuple[int, int]) -> np.ndarray:
+    image = cv2.resize(frame, size)
+
+    # Convert BGR (OpenCV default) to RGB for TFLite
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    # Convert to a NumPy array
+    img_array = np.array(frame_rgb, dtype=np.uint8)
+    print("Image shape:", img_array.shape)  # Ensure shape matches model input
+    new_array = np.expand_dims(img_array, axis=0)
+    print("Image shape:", new_array.shape)
+    return new_array
+
 
 # TODO: Function to conduct inference
+def fine_pooches(numpy_array: np.ndarray, runner: SignatureRunner) -> tuple[str, float]:
+    return ("sad dog", 3.14)
 
 
 def main():
@@ -54,6 +70,14 @@ def main():
             if not ret:
                 print("Webcam Broken!!")
                 exit(1)
+
+            # webcame took pic successfully
+            np_array = resize(frame, size=(150, 150))
+            print(np_array.shape)
+            result, prob = fine_pooches(np_array, runner)
+            print("\n")
+            print(result, prob)
+
     except KeyboardInterrupt:
         print("\nKeyboardInterrupt detected. Exiting gracefully.")
 
