@@ -48,6 +48,14 @@ def main():
     webcam = cv2.VideoCapture(0)  # 0 is default camera index
 
     # TODO: Loop to take pictures and invoke inference. Should loop until Ctrl+C keyboard interrupt.
+    try:
+        while True:
+            ret, frame = webcam.read()
+            if not ret:
+                print("Webcam Broken!!")
+                exit(1)
+    except KeyboardInterrupt:
+        print("\nKeyboardInterrupt detected. Exiting gracefully.")
 
     # Release the camera
     webcam.release()
