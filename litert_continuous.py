@@ -33,7 +33,7 @@ def resize(frame, size: tuple[int, int]) -> np.ndarray:
     image = cv2.resize(frame, size)
 
     # Convert BGR (OpenCV default) to RGB for TFLite
-    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    frame_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
     # Convert to a NumPy array
     img_array = np.array(frame_rgb, dtype=np.uint8)
