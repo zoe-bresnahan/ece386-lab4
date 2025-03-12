@@ -24,7 +24,6 @@ def get_litert_runner(model_path: str) -> SignatureRunner:
     # Create callable object that runs inference based on signatures
     # 'serving_default' is default... but in production should parse from signature
 
-    
     return interpreter.get_signature_runner("serving_default")
 
 
@@ -46,10 +45,19 @@ def resize(frame, size: tuple[int, int]) -> np.ndarray:
 # TODO: Function to conduct inference
 def fine_pooches(numpy_array: np.ndarray, runner: SignatureRunner) -> tuple[str, float]:
     # Invoke inference
-    output = runner(catdog_input=numpy_array)  # Key matches top key from get_input_details()
+    output = runner(
+        catdog_input=numpy_array
+    )  # Key matches top key from get_input_details()
     # Extract the result fom the batch returned
     result = output["output_0"][0][0]  # Key matches top key from get_output_details()
-    return result
+    print(result)
+    myclass = ""
+
+    if result > 0:
+        myclass = "dog"
+    else:
+        myclass = "cat"
+    return myclass, result
 
 
 def main():
@@ -82,7 +90,8 @@ def main():
             print(np_array.shape)
             result, prob = fine_pooches(np_array, runner)
             print("\n")
-            print(result, prob)
+            print(result)
+            print(prob)
 
     except KeyboardInterrupt:
         print("\nKeyboardInterrupt detected. Exiting gracefully.")
