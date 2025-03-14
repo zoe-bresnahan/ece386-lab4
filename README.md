@@ -21,3 +21,15 @@ Verify your signatures are what you expect, then get to work!
 ### People
 
 ### LLMs
+
+Discuss the following: and add in keras model 
+
+-Relative model sizes
+
+-Relative performance for more vs. fewer images per run, and why
+
+-Pipeline stalls waiting for memory
+
+-L2 invalidations (meaning something in the L2 cache had to be overwritten)
+
+-LLC loads and misses
