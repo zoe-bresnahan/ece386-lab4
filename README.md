@@ -25,6 +25,7 @@ Verify your signatures are what you expect, then get to work!
 Discuss the following: and add in keras model 
 
 -Relative model sizes
+The keras model was much larger than the tflite model when we ran it in Colab during the prelab. The keras model was ~26.3MB and the tflite model was ~2.39MB which is about 10x bigger. 
 
 -Relative performance for more vs. fewer images per run, and why
 
