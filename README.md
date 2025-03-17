@@ -20,13 +20,13 @@ Verify your signatures are what you expect, then get to work!
 The keras model was much larger than the tflite model when we ran it in Colab during the prelab. The keras model was ~26.3MB and the tflite model was ~2.39MB which is about 10x bigger. 
 
 2. Relative performance for more vs. fewer images per run, and why
-
+-where to find this info??
 
 3. Pipeline stalls waiting for memory
 Keras has a longer stall compared to LiteRT because it has to access memory more due to a smaller cache. The Keras model stalled cycles were 1.12e10 while LiteRT stalled cycles were 8.14e8. 
 
 4. L2 invalidations (meaning something in the L2 cache had to be overwritten)
-
+-keras has more (idk why)
 
 5. LLC loads and misses
 Keras read more data and had more misses compared to the LiteRT model. Keras had 4.61e8 LLC-Loads while LiteRT had 12606124 LLC-Loads. Keras had 1.75e8 LLC-Load-Misses while LiteRT had 5598791 LLC-Load-Misses. This is logical because the LiteRT model can hold more data in the higher level caches, meaning it has less to look through in the last level cache. 
