@@ -79,8 +79,10 @@ def main():
     webcam = cv2.VideoCapture(0)  # 0 is default camera index
 
     # TODO: Loop to take pictures and invoke inference. Should loop until Ctrl+C keyboard interrupt.
+    numPics = 0
+    desired = 10
     try:
-        while True:
+        for numPics < desired:
             ret, frame = webcam.read()
             if not ret:
                 print("Webcam Broken!!")
