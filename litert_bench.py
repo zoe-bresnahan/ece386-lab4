@@ -1,5 +1,6 @@
-"""This script loads a .tflite model into LiteRT and continuously takes pictures with a webcam,
-printing if the picture is of a cat or a dog."""
+"""This is a benchmark for running LiteRT model.
+After completing the litert_continuous.py
+simply copy in the code here and replace the while loop with a for loop"""
 
 import cv2
 from ai_edge_litert.interpreter import Interpreter, SignatureRunner
