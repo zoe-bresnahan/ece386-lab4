@@ -79,25 +79,20 @@ def main():
     webcam = cv2.VideoCapture(0)  # 0 is default camera index
 
     # TODO: Loop to take pictures and invoke inference. Should loop until Ctrl+C keyboard interrupt.
-    numPics = 0
     desired = 10
-    try:
-        for numPics < desired:
-            ret, frame = webcam.read()
-            if not ret:
-                print("Webcam Broken!!")
-                exit(1)
+    for i in range(desired):
+        ret, frame = webcam.read()
+        if not ret:
+            print("Webcam Broken!!")
+            exit(1)
 
-            # webcame took pic successfully
-            np_array = resize(frame, size=(150, 150))
-            print(np_array.shape)
-            result, prob = fine_pooches(np_array, runner)
-            print("\n")
-            print(result)
-            print(prob)
-
-    except KeyboardInterrupt:
-        print("\nKeyboardInterrupt detected. Exiting gracefully.")
+        # webcame took pic successfully
+        np_array = resize(frame, size=(150, 150))
+        print(np_array.shape)
+        result, prob = fine_pooches(np_array, runner)
+        print("\n")
+        print(result)
+        print(prob)
 
     # Release the camera
     webcam.release()
